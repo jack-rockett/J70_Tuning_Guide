@@ -33,9 +33,6 @@ jib_cut_filter = st.selectbox("Jib Cut Selection", ["J2+", "J6"])
 
 # --- STREAMLIT SELECTION
 
-st.write('You selected:', jib_cut_filter)
-st.write('with wind speed:', wind_speed_filter)
-
 filtered_JIB_df = JIB_df[(JIB_df['WIND_SPEED'] >= wind_speed_filter[0]) & (JIB_df['WIND_SPEED'] <= wind_speed_filter[1]) & (JIB_df['JIB_CUT'] == jib_cut_filter)]
 filtered_RIG_df = RIG_df[(RIG_df['WIND_SPEED'] >= wind_speed_filter[0]) & (RIG_df['WIND_SPEED'] <= wind_speed_filter[1])]
 
