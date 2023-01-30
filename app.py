@@ -37,7 +37,7 @@ filtered_JIB_df = JIB_df[(JIB_df['WIND_SPEED'] >= wind_speed_filter[0]) & (JIB_d
 filtered_RIG_df = RIG_df[(RIG_df['WIND_SPEED'] >= wind_speed_filter[0]) & (RIG_df['WIND_SPEED'] <= wind_speed_filter[1])]
 
 st.header("JIB Tuning Database")
-st.write(filtered_JIB_df)
+st.write(filtered_JIB_df, index=False)
 
 st.header("RIG Tuning Database")
-st.write(filtered_RIG_df)
+st.dataframe(filtered_RIG_df, index=False)
