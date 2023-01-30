@@ -40,4 +40,4 @@ st.header("JIB Tuning Database")
 st.write(filtered_JIB_df, index=False)
 
 st.header("RIG Tuning Database")
-st.dataframe(filtered_RIG_df, index=False)
+st.write(filtered_RIG_df, index=False)
