@@ -26,7 +26,7 @@ JIB_df = pd.read_excel(excel_file,
                             header=0,
                             converters={'KEY': str, 'INHAUL': str, 'HALYARD': str, 'JIB_CUT': str, 'WIND_SPEED': int, 'CAR_POSITION': str}
                             )
-wind_speed_filter = st.slider("Wind Speed Filter", 0, 20, 10)
+wind_speed_filter = st.slider("Wind Speed Filter (Kts)", 0, 20, 10)
     # st.number_input("Wind Speed Filter", min_value=0, max_value=20, value=0)
     # st.slider("Wind Speed Filter", 0, 20, (0, 20))
 jib_cut_filter = st.selectbox("Jib Cut Selection", ["J6","J2+"])

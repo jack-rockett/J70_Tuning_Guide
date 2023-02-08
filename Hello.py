@@ -13,7 +13,8 @@ st.markdown(
     """
     This site is built to quickly access tuning information for the J70
     ###
-    **👈 Select a Tuning Guide from the sidebar** 
+    **👈 Select a Tuning Guide from the sidebar [>]
+    (top left on mobile)** 
     ###
   
     ### Want to learn more?
