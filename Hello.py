@@ -17,7 +17,7 @@ st.markdown(
     ###
   
     ### Want to learn more?
-    - Check out the source code [streamlit.io](https://streamlit.io)
+    - Check out the source code [GitHub](https://github.com/jack-rockett/J70_Tuning_Guide)
     
     ### Want to contribute?
     - Watch this space... **Bringing out template and submission form soon**

@@ -27,7 +27,7 @@ new_value_for_column9 = st.slider("Crew Weight (Kg)", 360, 500, 430)
 
 prediction = model.predict(np.array([[new_value_for_column2, new_value_for_column9]]))
 
-st.write("Predicted values for columns 3 and 4:", prediction[0][0], prediction[0][1])
+# st.write("Predicted values for columns 3 and 4:", prediction[0][0], prediction[0][1])
 
 st.metric(label='Uppers Turns', value= round((np.ceil(prediction[0][0] * 2)/2),1))
 st.metric(label='Lowers Turns', value= round((np.ceil(prediction[0][1] * 2)/2),1))
