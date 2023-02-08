@@ -22,7 +22,7 @@ model = LinearRegression()
 model.fit(X, Y)
 
 st.title("Linear Regression Model")
-new_value_for_column2 = st.slider("Windspeed (Kts", 0, 20, 12)
+new_value_for_column2 = st.slider("Windspeed (Kts)", 0, 20, 12)
 new_value_for_column9 = st.slider("Crew Weight (Kg)", 360, 500, 430)
 
 prediction = model.predict(np.array([[new_value_for_column2, new_value_for_column9]]))
