@@ -11,7 +11,7 @@ RIG_ML_df = pd.read_excel(excel_file,
                             sheet_name=sheet_name_3,
                             usecols='A:I',
                             header=0,
-                            converters={'KEY': str, 'UPPERS_TURNS': str, 'LOWERS_TURNS': str, 'TENSION_LOWERS': str,
+                            converters={'KEY': str, 'UPPERS_TURNS': float, 'LOWERS_TURNS': float, 'TENSION_LOWERS': str,
                                         'TENSION UPPERS': str, 'TRAVELLER_POSITION': str, 'WIND_SPEED': int, 'BACKSTAY': str}
                             )
 
