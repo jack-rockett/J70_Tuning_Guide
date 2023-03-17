@@ -5,7 +5,7 @@ from PIL import Image
 
 st.set_page_config(page_title='J70 Interactive Tuning Guide')
 st.header('J70 Tuning Guide')
-st.subheader('Developed by GBR937 Powder Monkey Sailing Team')
+st.caption('Developed by GBR937 Powder Monkey Sailing Team')
 
 ### --- LOAD DATAFRAME
 excel_file = 'Tuning Database.xlsx'
