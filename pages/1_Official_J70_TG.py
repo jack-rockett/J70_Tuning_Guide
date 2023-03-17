@@ -71,7 +71,7 @@ def convert_df(df):
 
 csv = convert_df(RIG_df)
 csv1 = convert_df(JIB_df)
-
+csv2 = convert_df(Polars_df)
 
 st.subheader("Download options")
 st.download_button(
@@ -84,5 +84,11 @@ st.download_button(
     label="Jib tune data as CSV",
     data=csv1,
     file_name='tuning_guide_j70_jib_df.csv',
+    mime='text/csv',
+)
+st.download_button(
+    label="Target Speed data as CSV",
+    data=csv2,
+    file_name='tuning_guide_j70_polar_df.csv',
     mime='text/csv',
 )
