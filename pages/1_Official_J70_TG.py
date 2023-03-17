@@ -36,7 +36,7 @@ Polars_df = pd.read_excel(excel_file,
 wind_speed_filter = st.slider("Wind Speed Filter (Kts)", 0, 20, 10)
     # st.number_input("Wind Speed Filter", min_value=0, max_value=20, value=0)
     # st.slider("Wind Speed Filter", 0, 20, (0, 20))
-jib_cut_filter = st.selectbox("Jib Cut Selection", ["J6","J2+"])
+jib_cut_filter = st.radio("Jib Cut Selection", ["J6","J2+"])
 
 
 filtered_JIB_df = JIB_df[(JIB_df['WIND_SPEED'] == wind_speed_filter) & (JIB_df['JIB_CUT'] == jib_cut_filter)]
@@ -44,14 +44,16 @@ filtered_RIG_df = RIG_df[(RIG_df['WIND_SPEED'] == wind_speed_filter)]
 filtered_polars_df = Polars_df[(Polars_df['wind_speed'] == wind_speed_filter)]
 
 # --- STREAMLIT SELECTION
+st.subheader('Settings:')
 
-st.metric(label='Uppers Turns', value=filtered_RIG_df['UPPERS_TURNS'].max())
-st.metric(label='Lowers Turns', value=filtered_RIG_df['LOWERS_TURNS'].max())
-st.metric(label='Car Position', value=filtered_JIB_df['CAR_POSITION'].max())
-st.metric(label='Jib Inhaul', value=filtered_JIB_df['INHAUL'].max())
-st.metric(label='Jib Halyard', value=filtered_JIB_df['HALYARD'].max())
-st.metric(label='Upwind target Kts', value=filtered_polars_df['beat_target'])
-st.metric(label='Downwind target Kts', value=filtered_polars_df['run_target'])
+col1, col2, col3 = st.columns (3)
+col1.metric(label='Uppers Turns', value=filtered_RIG_df['UPPERS_TURNS'].max())
+col1.metric(label='Lowers Turns', value=filtered_RIG_df['LOWERS_TURNS'].max())
+col2.metric(label='Jib Inhaul', value=filtered_JIB_df['INHAUL'].max())
+col2.metric(label='Jib Halyard', value=filtered_JIB_df['HALYARD'].max())
+col2.metric(label='Car Position', value=filtered_JIB_df['CAR_POSITION'].max())
+col3.metric(label='Upwind target Kts', value=filtered_polars_df['beat_target'])
+col3.metric(label='Downwind target Kts', value=filtered_polars_df['run_target'])
 
 # DATABASE DF Blocks
 # st.header("JIB Tuning Database")
