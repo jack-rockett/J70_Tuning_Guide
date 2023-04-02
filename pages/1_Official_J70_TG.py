@@ -5,8 +5,8 @@ from PIL import Image
 
 st.set_page_config(page_title='J70 Interactive Tuning Guide')
 st.header('J70 Tuning Guide')
-st.caption('Developed by GBR937 Powder Monkey Sailing Team')
-
+st.caption('App developed by Powder Monkey Sailing Team')
+st.caption('Rig tension as per North Sails Guide, Target speeds as per ORC certificate for J70')
 ### --- LOAD DATAFRAME
 excel_file = 'Tuning Database.xlsx'
 sheet_name_1 = 'Rig Tuning Database'
