@@ -15,7 +15,7 @@ sheet_name_3 = 'Polars'
 
 RIG_df = pd.read_excel(excel_file,
                             sheet_name=sheet_name_1,
-                            usecols='A:I',
+                            usecols='A:H',
                             header=0,
                             converters={'KEY': str, 'UPPERS_TURNS': str, 'LOWERS_TURNS': str, 'TENSION_LOWERS': str,
                                         'TENSION UPPERS': str, 'TRAVELLER_POSITION': str, 'WIND_SPEED': int, 'BACKSTAY': str}
