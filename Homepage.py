@@ -7,7 +7,7 @@ st.set_page_config(
 
 st.write("# Welcome! 👋")
 
-st.sidebar.success("Select a Guide in the side bar.")
+# st.sidebar.success("Select a Guide in the side bar.")
 
 st.markdown(
     """
