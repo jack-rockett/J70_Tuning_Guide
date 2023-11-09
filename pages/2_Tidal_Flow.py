@@ -79,14 +79,24 @@ image_dir = 'Images'
 # Calculate the rounded time difference
 rounded_time_difference = round(float(closest_high_tide['TimeDifferenceHRS'].values[0]) * 2) / 2
 
+# Display final page
+
+st.header('Tide Flow NOW')
+# Add a radio button to the Streamlit app
+option = st.radio(
+    'Select Time:',
+    ('Now', '+30'))
+# Add either zero or 0.5 to the rounded_time_difference variable based on the selected option
+if option == '+30':
+    rounded_time_difference += 0.5
+
 # Construct the path to the image
 image_path = os.path.join(image_dir, f'{rounded_time_difference}.jpg')
 
 
-# Display final page
 
-st.header('Tide Flow NOW')
-st.caption('Page will auto-refresh each minute')
+
+# st.caption('Page will auto-refresh each minute')
 st.image(image_path)
 st.header('Tide Times Portsmouth TODAY')
 st.caption('Data Scraped live from BBC Weather presentation of UK Hydrographic Office Data')
