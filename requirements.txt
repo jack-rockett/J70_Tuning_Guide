@@ -5,3 +5,4 @@ pandas
 streamlit
 Pillow
 scikit-learn
+beautifulsoup4
