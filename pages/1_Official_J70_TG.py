@@ -23,7 +23,7 @@ RIG_df = pd.read_excel(excel_file,
 
 JIB_df = pd.read_excel(excel_file,
                             sheet_name=sheet_name_2,
-                            usecols='A:G',
+                            usecols='A:F',
                             header=0,
                             converters={'KEY': str, 'INHAUL': str, 'HALYARD': str, 'JIB_CUT': str, 'WIND_SPEED': int, 'CAR_POSITION': str}
                             )
