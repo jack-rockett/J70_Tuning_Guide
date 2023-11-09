@@ -5,13 +5,13 @@ st.set_page_config(
     page_icon="👋",
 )
 
-st.write("# Welcome my Site! 👋")
+st.write("# Welcome! 👋")
 
-st.sidebar.success("Select a Tuning Guide above.")
+st.sidebar.success("Select a Guide in the side bar.")
 
 st.markdown(
     """
-    This site is built to quickly access tuning information for the J70
+    This site is built to quickly access tuning and tidal information for the J70
     ###
     **👈 Select a Tuning Guide from the sidebar [>]
     (top left on mobile)** 
