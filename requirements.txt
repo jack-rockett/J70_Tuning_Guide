@@ -6,4 +6,4 @@ streamlit
 Pillow
 scikit-learn
 beautifulsoup4
-
+streamlit_autorefresh
