@@ -6,11 +6,11 @@ from datetime import datetime
 import pytz
 from datetime import date
 import os
-# from streamlit_autorefresh import st_autorefresh
-#
-# # Run the autorefresh about every 2000 milliseconds (2 seconds) and stop
-# # after it's been refreshed 100 times.
-# count = st_autorefresh(interval=60000, limit=100, key="fizzbuzzcounter")
+from streamlit_autorefresh import st_autorefresh
+
+# Run the autorefresh about every 2000 milliseconds (2 seconds) and stop
+# after it's been refreshed 100 times.
+count = st_autorefresh(interval=60000, limit=100, key="fizzbuzzcounter")
 
 def scrape_data(url):
     response = requests.get(url)
@@ -60,7 +60,10 @@ now = datetime.now(pytz.timezone('GMT'))
 time_string = now.strftime("%H:%M")
 
 # Calculate the absolute difference between the current time and each time in the 'Time' column in seconds
-df['TimeDifferenceHRS'] = abs(df['Time'].apply(lambda x: (datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()))
+df['TimeDifferenceHRS'] = df['Time'].apply(lambda x:
+    -(datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()
+    if x > now.time()
+    else (datetime.combine(date.today(), now.time()) - datetime.combine(date.today(), x)).total_seconds())
 
 # Convert the 'Time' column back to 'HH:MM' format
 df['Time'] = df['Time'].apply(lambda x: x.strftime('%H:%M'))
@@ -96,7 +99,7 @@ image_path = os.path.join(image_dir, f'{rounded_time_difference}.jpg')
 
 
 
-# st.caption('Page will auto-refresh each minute')
+st.caption('Page will auto-refresh each minute')
 st.image(image_path)
 st.header('Tide Times Portsmouth TODAY')
 st.caption('Data Scraped live from BBC Weather presentation of UK Hydrographic Office Data')
@@ -105,4 +108,4 @@ st.write(f"Current time (GMT): {time_string}")
 st.caption('Closest HW:')
 st.write(closest_high_tide)
 st.caption('App developed by Powder Monkey Sailing Team')
-# st.write(f"Refreshed: {count} times")
+st.write(f"Refreshed: {count} times")
