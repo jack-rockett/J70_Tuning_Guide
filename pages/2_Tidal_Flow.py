@@ -59,12 +59,12 @@ now = datetime.now(pytz.timezone('GMT'))
 # Format the time as a string
 time_string = now.strftime("%H:%M")
 
-# Calculate the absolute difference between the current time and each time in the 'Time' column in seconds
+# Calculate the difference between the current time and each time in the 'Time' column in seconds
 df['TimeDifferenceHRS'] = df['Time'].apply(lambda x:
     -(datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()
     if x > now.time()
     else (datetime.combine(date.today(), now.time()) - datetime.combine(date.today(), x)).total_seconds())
-
+df['abstd'] = abs(df['Time'].apply(lambda x: (datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()))
 # Convert the 'Time' column back to 'HH:MM' format
 df['Time'] = df['Time'].apply(lambda x: x.strftime('%H:%M'))
 
@@ -72,8 +72,9 @@ df['Time'] = df['Time'].apply(lambda x: x.strftime('%H:%M'))
 df['TimeDifferenceHRS'] = (df['TimeDifferenceHRS'] / 3600).round(1)
 
 # Filter the DataFrame to find the row with the 'High' phase and the smallest time difference
-closest_high_tide = df[df['Phase'] == 'High'].nsmallest(1, 'TimeDifferenceHRS')
-
+closest_high_tide = df[df['Phase'] == 'High'].nsmallest(1, 'abstd')
+df_filtered = closest_high_tide.copy()
+df_filtered = df_filtered.drop('abstd', axis=1)
 
 # Tidal Flow Chart
 # Define the path to the directory where the images are stored
@@ -106,6 +107,6 @@ st.caption('Data Scraped live from BBC Weather presentation of UK Hydrographic O
 st.caption('All Times quoted in GMT')
 st.write(f"Current time (GMT): {time_string}")
 st.caption('Closest HW:')
-st.write(closest_high_tide)
+st.write(df_filtered)
 st.caption('App developed by Powder Monkey Sailing Team')
 # st.write(f"Refreshed: {count} times")
