@@ -6,6 +6,8 @@ from datetime import datetime
 import pytz
 from datetime import date
 import os
+
+
 # from streamlit_autorefresh import st_autorefresh
 #
 # # Run the autorefresh about every 2000 milliseconds (2 seconds) and stop
@@ -38,6 +40,7 @@ def scrape_data(url):
     df = pd.DataFrame(data, columns=headers)
     return df
 
+
 url = "https://www.bbc.co.uk/weather/coast-and-sea/tide-tables/8/65"
 df = scrape_data(url)
 
@@ -48,7 +51,7 @@ df.columns = ['Time', 'Height']
 df['Height'] = df['Height'].astype(float)
 
 # Add the 'Phase' column based on the conditions
-df['Phase'] = df['Height'].apply(lambda x: 'High' if x >= 3 else 'Low' )
+df['Phase'] = df['Height'].apply(lambda x: 'High' if x >= 3 else 'Low')
 
 # Convert the 'Time' column to datetime format
 df['Time'] = pd.to_datetime(df['Time'], format='%H:%M').dt.time
@@ -61,10 +64,13 @@ time_string = now.strftime("%H:%M")
 
 # Calculate the difference between the current time and each time in the 'Time' column in seconds
 df['TimeDifferenceHRS'] = df['Time'].apply(lambda x:
-    -(datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()
-    if x > now.time()
-    else (datetime.combine(date.today(), now.time()) - datetime.combine(date.today(), x)).total_seconds())
-df['abstd'] = abs(df['Time'].apply(lambda x: (datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()))
+                                           -(datetime.combine(date.today(), x) - datetime.combine(date.today(),
+                                                                                                  now.time())).total_seconds()
+                                           if x > now.time()
+                                           else (datetime.combine(date.today(), now.time()) - datetime.combine(
+                                               date.today(), x)).total_seconds())
+df['abstd'] = abs(df['Time'].apply(
+    lambda x: (datetime.combine(date.today(), x) - datetime.combine(date.today(), now.time())).total_seconds()))
 # Convert the 'Time' column back to 'HH:MM' format
 df['Time'] = df['Time'].apply(lambda x: x.strftime('%H:%M'))
 
@@ -89,16 +95,18 @@ st.header('Tide Flow NOW')
 # Add a radio button to the Streamlit app
 option = st.radio(
     'Select Time:',
-    ('Now', '+30'))
+    ('Now', '+30', '+1Hr', '+1.5Hrs', "+2Hrs"), horizontal=True)
 # Add either zero or 0.5 to the rounded_time_difference variable based on the selected option
 if option == '+30':
     rounded_time_difference += 0.5
-
+if option == '+1Hr':
+    rounded_time_difference += 1.0
+if option == '+1.5Hrs':
+    rounded_time_difference += 1.5
+if option == '+2Hrs':
+    rounded_time_difference += 2.0
 # Construct the path to the image
 image_path = os.path.join(image_dir, f'{rounded_time_difference}.jpg')
-
-
-
 
 # st.caption('Page will auto-refresh each minute')
 st.image(image_path)
