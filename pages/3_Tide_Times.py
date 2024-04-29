@@ -44,7 +44,7 @@ df['Height'] = df['Height'].astype(float)
 df['Phase'] = df['Height'].apply(lambda x: 'High' if x >= 3 else 'Low' )
 
 # Display current time alongside data
-now = datetime.now(pytz.timezone('GMT'))
+now = datetime.now(pytz.timezone('Europe/London'))
 
 # Format the time as a string
 time_string = now.strftime("%H:%M")
